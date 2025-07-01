@@ -15,11 +15,19 @@ export const  Todo = () =>{
 
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
+
+  const onClickTodoAdd = (event) =>{
+    if(todoText === "") return ;
+    const newTodos = [...incompleteTodos,todoText];
+    setIncompleteTodos(newTodos);
+    setTodoText("");
+  }
+
   return(
     <>
     <div className='input-area'>
       <input placeholder='Todoを入力' value={todoText} onChange = {onChangeTodoText}/>
-      <button>追加</button>
+      <button onClick={onClickTodoAdd}>追加</button>
     </div>
     <div className='incomplete-area'>
       <p className='title'>未完了のTODO</p>
@@ -39,7 +47,7 @@ export const  Todo = () =>{
     <div className='complete-area'>
     <p className='title'>完了のTODO</p>
       <ul>
-        {incompleteTodos.map((todo) =>(
+        {completeTodos.map((todo) =>(
             <li key={todo}>
              <div className='list-low'>
               <p className='todo-item'>{todo}</p>
