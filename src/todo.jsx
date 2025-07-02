@@ -5,12 +5,12 @@ export const  Todo = () =>{
   const [todoText,setTodoText] = useState("")
 
   const [incompleteTodos,setIncompleteTodos] = useState([
-    "TODOです1",
-    "TODOです2"
+    // "TODOです1",
+    // "TODOです2"
   ]);
   const [completeTodos,setCompleteTodos] = useState([
-    "TODOでした1",
-    "TODOでした2"
+    // "TODOでした1",
+    // "TODOでした2"
   ]);
 
 
@@ -37,7 +37,13 @@ export const  Todo = () =>{
     setCompleteTodos(newCompleteTodos)
   }
 
-
+  const onClickBack = (index)=>{
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index,1);
+    const newIncompleteTodos = [...incompleteTodos,completeTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  }
 
   return(
     <>
@@ -63,11 +69,11 @@ export const  Todo = () =>{
     <div className='complete-area'>
     <p className='title'>完了のTODO</p>
       <ul>
-        {completeTodos.map((todo) =>(
+        {completeTodos.map((todo,index) =>(
             <li key={todo}>
              <div className='list-low'>
               <p className='todo-item'>{todo}</p>
-              <button>戻す</button>
+              <button onClick={() => onClickBack(index)}>戻す</button>
              </div>
             </li>
           )
