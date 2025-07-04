@@ -1,3 +1,4 @@
+import { CompleteTodos } from './components/CompleteTodos';
 import { InCompleteTodos } from './components/InCompleteTodos';
 import { InputTodo } from './components/InputTodo';
 import './index.css'
@@ -59,20 +60,10 @@ export const  Todo = () =>{
        onClickComplete={onClickComplete}
        onClickDelete={onClickDelete}
     />
-    <div className='complete-area'>
-    <p className='title'>完了のTODO</p>
-      <ul>
-        {completeTodos.map((todo,index) =>(
-            <li key={todo}>
-             <div className='list-low'>
-              <p className='todo-item'>{todo}</p>
-              <button onClick={() => onClickBack(index)}>戻す</button>
-             </div>
-            </li>
-          )
-        )}
-      </ul>
-    </div>
+    <CompleteTodos
+      todos={completeTodos}
+      onClickBack={onClickBack}
+    />
     </>
   )
 }
